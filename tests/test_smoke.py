@@ -10,6 +10,7 @@ Note: These are NOT unit tests (you'll learn those in Lecture 5).
 These are just "smoke tests" to verify the refactoring didn't break imports.
 """
 
+import importlib.util
 import sys
 from pathlib import Path
 
@@ -19,10 +20,11 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 def test_imports_work():
     """Test that all refactored modules can be imported."""
-    try:
-        from road_profile_viewer import geometry, road, visualization, main
-    except ImportError as e:
-        raise AssertionError(f"Import failed: {e}")
+    modules = ["geometry", "main", "road", "visualization"]
+    for module_name in modules:
+        spec = importlib.util.find_spec(f"road_profile_viewer.{module_name}")
+        if spec is None:
+            raise AssertionError(f"Module 'road_profile_viewer.{module_name}' not found")
 
     print("✅ All modules import successfully!")
 
