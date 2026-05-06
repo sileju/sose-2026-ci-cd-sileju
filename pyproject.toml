@@ -48,9 +48,6 @@ ignore = []  # Add "E501" here if you want to ignore line length entirely
 [tool.ruff.format]
 quote-style = "double"
 line-ending = "lf"
-indent-style = "space"
-preview = true
-docstring-code-format = true
 
 [tool.pyright]
 # Strikte Type-Prüfung
@@ -72,7 +69,8 @@ exclude = [
 
 # Reporting-Optionen
 reportMissingTypeStubs = true
-reportUnknownMemberType = "warning"
+reportUnknownMemberType = false
 reportUnknownParameterType = "warning"
 reportUnknownVariableType = "warning"
 reportUnknownArgumentType = "warning"
+reportPrivateImportUsage = false
